@@ -6,7 +6,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../src/theme';
 
 function getCache() {
-return  createCache({ key: 'css', prepend: true });
+  return createCache({ key: 'css', prepend: true });
 }
 
 export default class MyDocument extends Document {
@@ -85,6 +85,9 @@ MyDocument.getInitialProps = async (ctx) => {
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
-    styles: [...React.Children.toArray(initialProps.styles), ...emotionStyleTags],
+    styles: [
+      ...React.Children.toArray(initialProps.styles),
+      ...emotionStyleTags,
+    ],
   };
 };

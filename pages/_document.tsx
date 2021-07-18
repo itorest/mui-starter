@@ -6,9 +6,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../src/theme';
 
 function getCache() {
-  const cache = createCache({ key: 'css', prepend: true });
-  cache.compat = true;
-  return cache;
+return  createCache({ key: 'css', prepend: true });
 }
 
 export default class MyDocument extends Document {
@@ -65,10 +63,10 @@ MyDocument.getInitialProps = async (ctx) => {
   ctx.renderPage = () =>
     originalRenderPage({
       // Take precedence over the CacheProvider in our custom _app.js
-      enhanceComponent: (Component) => (props) =>
+      enhanceApp: (App) => (props) =>
         (
           <CacheProvider value={cache}>
-            <Component {...props} />
+            <App {...props} />
           </CacheProvider>
         ),
     });

@@ -1,13 +1,8 @@
 import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../src/theme';
-
-function getCache() {
-  return createCache({ key: 'css', prepend: true });
-}
+import createEmotionCache from '../src/createEmotionCache';
 
 export default class MyDocument extends Document {
   render() {
@@ -16,7 +11,6 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <meta name="description" content="MUI Starter" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -58,21 +52,19 @@ MyDocument.getInitialProps = async (ctx) => {
 
   const originalRenderPage = ctx.renderPage;
 
-  const cache = getCache();
+  // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
+  // However, be aware that it can have global side effects.
+  const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
   ctx.renderPage = () =>
     originalRenderPage({
-      // Take precedence over the CacheProvider in our custom _app.js
-      enhanceApp: (App) => (props) =>
-        (
-          <CacheProvider value={cache}>
-            <App {...props} />
-          </CacheProvider>
-        ),
+      enhanceApp: (App: any) => (props) => <App emotionCache={cache} {...props} />,
     });
 
   const initialProps = await Document.getInitialProps(ctx);
+  // This is important. It prevents emotion to render invalid HTML.
+  // See https://github.com/mui-org/material-ui/issues/26561#issuecomment-855286153
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
     <style

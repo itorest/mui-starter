@@ -24,7 +24,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "eslint": "latest",
+    "eslint": "7",
     "eslint-config-next": "latest",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",

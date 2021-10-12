@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@emotion/cache": "11.4.0",
-    "@emotion/react": "11.4.1",
-    "@emotion/server": "11.4.0",
-    "@emotion/styled": "11.3.0",
-    "@mui/material": "next",
-    "clsx": "1.1.1",
-    "next": "11.1.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@mui/material": "latest",
+    "clsx": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "scripts": {
     "dev": "next",
@@ -21,17 +21,17 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@types/node": "16.9.0",
-    "@types/react": "17.0.20",
-    "@types/react-dom": "17.0.9",
-    "eslint": "^7.32.0",
-    "eslint-config-next": "^11.1.2",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
-    "prettier": "^2.4.0",
-    "typescript": "4.4.2"
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "husky": "latest",
+    "lint-staged": "latest",
+    "prettier": "latest",
+    "typescript": "latest"
   },
   "lint-staged": {
     "*.ts{,x}": ["eslint --cache --fix"]

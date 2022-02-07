@@ -4,5 +4,4 @@ module.exports = {
   eslint: {
     dirs: ['pages', 'src'],
   },
-  swcMinify: true,
 };
